@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { createMessage, processIncomingMsg } from "./utils";
 import "./App.css";
 
+// const serverAddress = "ws://localhost:8080";
+const serverAddress = "ws://chatroom-ws-server.herokuapp.com";
+
 function App() {
   const name = useSelector((state) => state.name);
   const messages = useSelector((state) => state.messages);
@@ -12,7 +15,7 @@ function App() {
   const disableSendingMsg = !text || !name;
 
   useEffect(() => {
-    const socket = new WebSocket("ws://localhost:8080");
+    const socket = new WebSocket(serverAddress);
     setWs(socket);
 
     socket.onmessage = (event) => {
