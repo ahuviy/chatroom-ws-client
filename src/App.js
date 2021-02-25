@@ -8,7 +8,7 @@ function App() {
   const messages = useSelector((state) => state.messages);
   const dispatch = useDispatch();
   const [text, setText] = useState("");
-  const [ws, setWs] = useState(() => new WebSocket("ws://localhost:8080"));
+  const [ws, setWs] = useState();
   const disableSendingMsg = !text || !name;
 
   useEffect(() => {
