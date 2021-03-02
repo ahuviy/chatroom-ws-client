@@ -40,3 +40,17 @@ main > * {
 .my-msg {
   color: red;
 }
+
+.padding {
+  padding: 0 8px;
+}
+
+#write-msg {
+  flex: 1;
+  display: flex;
+}
+
+#write-msg input {
+  flex: 1;
+  margin-right: 8px;
+}

@@ -48,7 +48,7 @@ function App() {
     <div className="App">
       <header className="App-header">Chat Room</header>
       <main>
-        <div className="flex-center">
+        <div className="flex-center padding">
           <label>
             Your Name:&nbsp;
             <input
@@ -74,7 +74,7 @@ function App() {
           ))}
         </div>
         <form
-          className="flex-center"
+          className="flex-center padding"
           style={{ background: "lightgreen" }}
           disabled={disableSendingMsg}
           onSubmit={(event) => {
@@ -84,7 +84,7 @@ function App() {
             setText("");
           }}
         >
-          <label>
+          <label id="write-msg">
             Write a Message:&nbsp;
             <input value={text} onChange={(e) => setText(e.target.value)} />
             <button type="submit" disabled={disableSendingMsg}>
