@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   height: 100vh;
 }
@@ -15,4 +19,24 @@ header {
 
 main {
   height: calc(100vh - 50px);
+  display: grid;
+  grid-template-rows: 50px 1fr 50px;
+  grid-gap: 10px;
+}
+
+main > * {
+  border: 1px solid black;
+}
+
+.messages {
+  overflow: auto;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+
+.my-msg {
+  color: red;
 }

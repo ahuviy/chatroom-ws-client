@@ -48,9 +48,9 @@ function App() {
     <div className="App">
       <header className="App-header">Chat Room</header>
       <main>
-        <div>
+        <div className="flex-center">
           <label>
-            Your Name:
+            Your Name:&nbsp;
             <input
               value={name}
               onChange={(e) => {
@@ -59,7 +59,23 @@ function App() {
             />
           </label>
         </div>
+        <div className="messages">
+          {messages.map((message) => (
+            <div
+              key={message.timestamp}
+              className={message.sender === name ? "my-msg" : undefined}
+            >
+              <b>
+                [{message.timestamp}] [{message.sender}]
+              </b>
+              &nbsp;
+              <span>{message.msg}</span>
+            </div>
+          ))}
+        </div>
         <form
+          className="flex-center"
+          style={{ background: "lightgreen" }}
           disabled={disableSendingMsg}
           onSubmit={(event) => {
             event.preventDefault();
@@ -69,22 +85,13 @@ function App() {
           }}
         >
           <label>
-            Write a Message:
+            Write a Message:&nbsp;
             <input value={text} onChange={(e) => setText(e.target.value)} />
             <button type="submit" disabled={disableSendingMsg}>
               Submit
             </button>
           </label>
         </form>
-        {messages.map((message) => (
-          <div key={message.timestamp}>
-            <b>
-              [{message.timestamp}] [{message.sender}]
-            </b>
-            &nbsp;
-            <span>{message.msg}</span>
-          </div>
-        ))}
       </main>
     </div>
   );
