@@ -5,6 +5,7 @@ import "./App.css";
 
 // const serverAddress = "ws://localhost:8080";
 const serverAddress = "ws://chatroom-ws-server.herokuapp.com";
+const KEEP_ALIVE_INTERVAL_IN_MS = 10000;
 
 function App() {
   const name = useSelector((state) => state.name);
@@ -26,8 +27,20 @@ function App() {
       dispatch({ type: "ADD_MESSAGE", payload: msg });
     };
 
+    let keepAliveInterval;
+
+    socket.onopen = () => {
+      keepAliveInterval = setInterval(() => {
+        // Our websocket server is hosted by Heroku on a free plan.
+        // It will shut down if inactive for a certain period of time.
+        // This is meant to keep it always active so it won't close.
+        socket.send("keep alive");
+      }, KEEP_ALIVE_INTERVAL_IN_MS);
+    };
+
     return () => {
       socket.close();
+      clearInterval(keepAliveInterval);
     };
   }, [dispatch]);
 
